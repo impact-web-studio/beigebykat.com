@@ -8,18 +8,18 @@ export const headerData = {
     },
     {
       text: 'About',
-      href: '#',
+      href: '#about',
     },
     {
       text: 'Services',
-      href: '#',
+      href: '#services',
     },
     {
       text: 'Pricing',
-      href: '#',
+      href: '#pricing',
     },
   ],
-  actions: [{ text: 'Book Appointment', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [{text: 'Contact', href: '/contact'}, { text: 'Book Appointment', href: 'https://github.com/onwidget/astrowind', target: '_blank' , icon:'material-symbols-light:arrow-outward-rounded'},],
 };
 
 export const footerData = {
