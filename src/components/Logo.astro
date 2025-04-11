@@ -1,9 +1,20 @@
 ---
-import { SITE } from 'astrowind:config';
+import Image from '~/components/common/Image.astro';
+import { getHomePermalink } from '~/utils/permalinks';
+import LogoSrc from '~/assets/images/beigebykat-logo.svg';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+<a
+  class="inline-block font-bold text-xl h-fit w-fit"
+  href={getHomePermalink()}
 >
-  🚀 {SITE?.name}
-</span>
+  <div class=`w-32 h-20 lg:w-48`>
+    <Image
+      src={LogoSrc}
+      alt="Graphic logo for impact web studio"
+      class="!object-contain"
+      width={400}
+      height={160}
+    />
+  </div>
+</a>

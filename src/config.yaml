@@ -1,5 +1,5 @@
 site:
-  name: AstroWind
+  name: Kathy Mach | Toronto Hair Stylist
   site: 'https://astrowind.vercel.app'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
+    default: Kathy Mach | Toronto (GTA) Hair Stylist
     template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+  description: "Toronto-based hair stylist specializing in balayages."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Kathy Mach | Toronto (GTA) Hair Stylist
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -33,11 +33,11 @@ i18n:
 
 apps:
   blog:
-    isEnabled: true
+    isEnabled: false
     postsPerPage: 6
 
     post:
-      isEnabled: true
+      isEnabled: false
       permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
       robots:
         index: true
