@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
@@ -49,6 +50,26 @@ const metadata = {
       Blogs.
     </Fragment>
   </Hero>
+
+  <Hero2
+    title="Hey, I'm Kathy Mach"
+    tagline="behind the chair | beige by kat"
+  >
+    <Fragment slot="content">
+      <p>
+        I'm a big believer in transforming hair that brings out who you are inside - in creating looks that match your
+        unique style and energy. My goal is to make sure every woman who sits in my chair leaves feeling not just
+        beautiful, but empowered and ready to take on the world.My role in every session is to listen, collaborate, and
+        bring your hair vision to life in a way that feels authentically you. <br /><br />Outside of the salon, I'm a
+        mom, a traveler, and a dreamer. I find inspiration in new places, good conversations, and the quiet moments in
+        between. You can often find me soaking up new experiences, spending quality time with my son, getting lost in a
+        good book, or brainstorming new business ideas. These passions help keep me inspired and nurtures the energy
+        that fuels the work I do. <br /><br />”Because this isn't just about hair. <br />It's about showing up for
+        yourself. <br />It's about becoming the woman you already are — just a little more lit up.”<br /><br />Thanks
+        for being here with me on this journey. <br /><br />— Kathy
+      </p>
+    </Fragment>
+  </Hero2>
 
   <!-- Note Widget ******************* -->
 
@@ -338,7 +359,7 @@ const metadata = {
       {
         title: 'What do I need to start?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it's actually our duty to future generations.",
       },
       {
         title: 'How to install the Astro + Tailwind CSS template?',

@@ -2,6 +2,10 @@
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 
+import { Picture } from 'astro:assets';
+
+import HeroImage from '~/assets/images/kathy-hero.jpeg';
+
 import type { Hero as Props } from '~/types';
 
 const {
@@ -18,81 +22,239 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <slot name="bg">
-      {bg ? <Fragment set:html={bg} /> : null}
-    </slot>
-  </div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
-    <div class="py-12 md:py-20 lg:py-0 lg:flex lg:items-center lg:h-screen lg:gap-8">
-      <div class="basis-1/2 text-center lg:text-left pb-10 md:pb-16 mx-auto">
-        {
-          tagline && (
-            <p
-              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
-              set:html={tagline}
-            />
-          )
-        }
-        {
-          title && (
-            <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
-              set:html={title}
-            />
-          )
-        }
-        <div class="max-w-3xl mx-auto lg:max-w-none">
-          {
-            subtitle && (
-              <p
-                class="text-xl text-muted mb-6 dark:text-slate-300 intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
-                set:html={subtitle}
-              />
-            )
-          }
+<section
+  class="relative md:-mt-[76px] not-prose"
+  {...id ? { id } : {}}
+>
+  <!-- ============================================ -->
+  <!--                    Hero                      -->
+  <!-- ============================================ -->
 
-          {
-            actions && (
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 lg:justify-start lg:m-0 lg:max-w-7xl intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
-                {Array.isArray(actions) ? (
-                  actions.map((action) => (
-                    <div class="flex w-full sm:w-auto">
-                      <Button {...(action || {})} class="w-full sm:mb-0" />
-                    </div>
-                  ))
-                ) : (
-                  <Fragment set:html={actions} />
-                )}
-              </div>
-            )
-          }
-        </div>
-        {content && <Fragment set:html={content} />}
+  <section id="hero-856">
+    <div class="cs-container">
+      <div class="cs-content">
+        <span
+          class="cs-topper intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+          >{tagline}</span
+        >
+        <h1
+          class="cs-title intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        >
+          {title}
+        </h1>
+        <slot name="content" />
+        <p
+          class="cs-text intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        >
+          {content}
+        </p>
+        <a
+          href=""
+          class="cs-button-solid"
+          >Schedule An Appointment</a
+        >
       </div>
-      <div class="basis-1/2">
-        {
-          image && (
-            <div class="relative m-auto max-w-5xl intersect-once intercept-no-queue motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Image
-                  class="mx-auto rounded-md w-full"
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  loading="eager"
-                  width={600}
-                  height={600}
-                  {...image}
-                />
-              )}
-            </div>
-          )
-        }
-      </div>
+      <!--Hero Image-->
+      <Picture
+        aria-hidden="true"
+        decoding="async"
+        src={HeroImage}
+        alt="Kathy Mach"
+        width="570"
+        height="701"
+        class="cs-picture intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+      />
     </div>
-  </div>
+  </section>
+  <!--Change the svg path fill color to whatever color the section below is so you can match it and create the illusion it is all one piece-->
+  <svg
+    class="cs-wave"
+    width="1920"
+    height="179"
+    viewBox="0 0 1920 179"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M1920 179V91.3463C1835.33 91.3463 1715.47 76.615 1549.2 32.9521C1299.48 -32.3214 1132.77 12.1006 947.32 61.5167C810.762 97.9044 664.042 137 466.533 137C331.607 137 256.468 123.447 188.082 111.113C130.974 100.812 78.5746 91.3609 0 91.3609V179H1920Z"
+      fill="white"
+    ></path>
+  </svg>
 </section>
+
+<style>
+  /*-- -------------------------- -->
+<---            Hero            -->
+<--- -------------------------- -*/
+
+  /* Mobile - 360px */
+  @media only screen and (min-width: 0rem) {
+    section {
+      /* centers button */
+      text-align: center;
+      /* 116px - 164px top */
+      /* 60px - 100px  bottom */
+      padding: clamp(7.25rem, 16.82vw, 10.25rem) 1rem clamp(3.75rem, 7.82vw, 6.25rem);
+      background-color: #f7f7f7;
+      /* clips the svg wave from overflowing */
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    section .cs-container {
+      width: 100%;
+      max-width: 80rem;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    section .cs-content {
+      max-width: 39.375rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    section .cs-topper {
+      font-size: 1rem;
+      line-height: 1.2em;
+      text-transform: uppercase;
+      text-align: inherit;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    section .cs-title {
+      /* 39px - 61px */
+      font-size: clamp(2.4375rem, 5vw, 3.8125rem);
+      font-weight: 900;
+      line-height: 1.2em;
+      text-align: center;
+      /* 23 characters including spaces wide */
+      max-width: 23ch;
+      margin: 0 0 1rem 0;
+      color: var(--headerColor);
+      position: relative;
+    }
+    section .cs-text {
+      /* 16px - 20px */
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      line-height: 1.5em;
+      text-align: center;
+      width: 100%;
+      max-width: 33.1875rem;
+      /* 28px - 40px */
+      margin: 0 0 clamp(1.75rem, 3.92vw, 2.5rem) 0;
+      color: var(--bodyTextColor);
+    }
+    section .cs-button-solid {
+      font-size: 1rem;
+      /* 46px - 56px */
+      line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+      text-decoration: none;
+      font-weight: 700;
+      text-align: center;
+      margin: 0;
+      color: #fff;
+      min-width: 9.375rem;
+      padding: 0 1.5rem;
+      background-color: var(--primary);
+      border-radius: 0.25rem;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      /* prevents padding from adding to the width */
+      box-sizing: border-box;
+    }
+    section .cs-button-solid:before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 0%;
+      background: #000;
+      opacity: 1;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      border-radius: 0.25rem;
+      transition: width 0.3s;
+    }
+    section .cs-button-solid:hover:before {
+      width: 100%;
+    }
+    section .cs-picture {
+      width: 100%;
+      max-width: 35.625rem;
+      /* 400px - 712px */
+      height: clamp(25rem, 95vw, 44.5rem);
+      /* 100px - 200px */
+      border-radius: clamp(6.25rem, 17vw, 12.5rem) 0 clamp(6.25rem, 17vw, 12.5rem) 0;
+      box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.16);
+      /* clips the img tag corners */
+      overflow: hidden;
+      display: block;
+      position: relative;
+    }
+    section .cs-picture img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      /* makes image act as a background image */
+      object-fit: cover;
+      /* ensures the top of the images is at the top of the container, no heads getting cut off */
+      object-position: top;
+    }
+    section .cs-wave {
+      /* we're stretching the svg wider than the viewport so it's taller and has more of a presence */
+      width: 320%;
+      height: auto;
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+  }
+  /* Small Desktop - 1024px */
+  @media only screen and (min-width: 64rem) {
+    section {
+      text-align: left;
+    }
+    section .cs-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    section .cs-content {
+      width: 40vw;
+      /* prevents flex-box from squishing it */
+      flex: none;
+      align-items: flex-start;
+      /* sends it to the right in the 2nd position */
+      order: 2;
+    }
+    section .cs-title,
+    section .cs-text {
+      text-align: left;
+    }
+    section .cs-picture {
+      /* 623px - 814px */
+      height: clamp(38.9375rem, 60vw, 50.875rem);
+    }
+    section .cs-wave {
+      width: 100%;
+      left: 0;
+      /* flips it horizontally */
+      transform: scaleX(-1);
+    }
+  }
+</style>
