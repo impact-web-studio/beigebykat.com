@@ -1,0 +1,336 @@
+---
+import { Picture } from 'astro:assets';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import KathyImage1 from '~/assets/images/kathy-about-1.jpeg';
+import KathyImage2 from '~/assets/images/kathy-about-2.jpg';
+import KathyImage3 from '~/assets/images/kathy-about-3.png';
+import Button from '~/components/ui/Button.astro';
+---
+
+<!-- ============================================ --><!--                 Side By Side                 --><!-- ============================================ -->
+<WidgetWrapper>
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-white"></div>
+  </Fragment>
+  <section>
+    <div class="cs-container">
+      <div
+        class="cs-image-group intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+      >
+        <!--Top left image-->
+        <Picture
+          class="cs-picture cs-picture1"
+          src={KathyImage1}
+          alt="Image of Kathy Mach"
+          width={297}
+          height={366}
+          loading="lazy"
+          decoding="async"
+        />
+        <!--Bottom right image-->
+        <Picture
+          class="cs-picture cs-picture2 max-w-[405px] max-h-[376px] object-cover object-top"
+          src={KathyImage3}
+          alt="Image of Kathy Mach"
+          width={405}
+          height={376}
+          loading="lazy"
+          decoding="async"
+        />
+        <!--Middle image-->
+        <Picture
+          class="cs-picture cs-picture3 object-cover"
+          src={KathyImage2}
+          alt="Image of Kathy Mach"
+          width={218}
+          height={155}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="cs-content">
+        <span
+          class="iws-tagline intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+          >BEIGEBYKAT | BEHIND THE CHAIR</span
+        >
+        <h2
+          class="iws-heading font-heading xl:text-[3rem] intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        >
+          hey, I'm kathy Mach
+        </h2>
+        <p
+          class="iws-body intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        >
+          I'm a big believer in transforming hair that brings out who you are inside - in creating looks that match your
+          unique style and energy. My goal is to make sure every woman who sits in my chair leaves feeling not just
+          beautiful, but empowered and ready to take on the world. My role in every session is to listen, collaborate,
+          and bring your hair vision to life in a way that feels authentically you.
+          <br /><br />
+          Outside of the salon, I'm a mom, a traveler, and a dreamer. I find inspiration in new places, good conversations,
+          and the quiet moments in between. You can often find me soaking up new experiences, spending quality time with
+          my son, getting lost in a good book, or brainstorming new business ideas. These passions help keep me inspired
+          and nurtures the energy that fuels the work I do.
+          <br /><br />
+          ”Because this isn't just about hair.
+          <br />
+          It's about showing up for yourself.
+          <br />
+          It's about becoming the woman you already are — just a little more lit up.”
+          <br /><br />
+          Thanks for being here with me on this journey.
+          <br /><br />
+          — Kathy
+        </p>
+        <div class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+          <Button
+            variant="primary"
+            text="Schedule an Appointment"
+            href="https://www.kathymach.com/appointments"
+            target="_blank"
+            type="button"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</WidgetWrapper>
+
+<style>
+  :root {
+    /* Add these styles to your global stylesheet, which is used across all site pages. You only need to do this once. All elements in the library derive their variables and base styles from this central sheet, simplifying site-wide edits. For instance, if you want to modify how your h2's appear across the site, you just update it once in the global styles, and the changes apply everywhere. */
+    --primary: #ff6a3e;
+    --primaryLight: #ffba43;
+    --secondary: #ffba43;
+    --secondaryLight: #ffba43;
+    --headerColor: #1a1a1a;
+    --bodyTextColor: #4e4b66;
+    --bodyTextColorWhite: #fafbfc;
+    /* 13px - 16px */
+    --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
+    /* 31px - 49px */
+    --headerFontSize: clamp(1.9375rem, 3.9vw, 3.0625rem);
+    --bodyFontSize: 1rem;
+    /* 60px - 100px top and bottom */
+    --sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *:before,
+  *:after {
+    /* prevents padding from affecting height and width */
+    box-sizing: border-box;
+  }
+
+  /*-- -------------------------- -->
+<---       Side By Side         -->
+<--- -------------------------- -*/
+
+  /* Mobile - 360px */
+  @media only screen and (min-width: 0rem) {
+    section {
+      padding: var(--sectionPadding);
+      background-color: #fff;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    .cs-container {
+      width: 100%;
+      /* changes to 1280px at desktop */
+      max-width: 36.5rem;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* 48px - 64px */
+      gap: clamp(3rem, 6vw, 4rem);
+    }
+    .cs-content {
+      /* set text align to left if content needs to be left aligned */
+      text-align: left;
+      width: 100%;
+      max-width: 36.625rem;
+      display: flex;
+      flex-direction: column;
+      /* centers content horizontally, set to flex-start to left align */
+      align-items: flex-start;
+    }
+    .iws-body {
+      margin-bottom: 1.5rem;
+    }
+    .cs-list {
+      margin: 0 0 2rem 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      /* 24px - 32px */
+      gap: clamp(1.5rem, 3vw, 2rem);
+    }
+    .cs-li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .cs-icon-wrapper {
+      /* 60px - 80px */
+      width: clamp(3.75rem, 7vw, 5rem);
+      height: clamp(3.75rem, 7vw, 5rem);
+      border: 1px solid #bababa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+    }
+    .cs-icon {
+      width: 2rem;
+      height: auto;
+      display: block;
+    }
+    .cs-h3 {
+      /* 20px - 25px */
+      font-size: clamp(1.25rem, 2.5vw, 1.5625rem);
+      font-weight: 700;
+      line-height: 1.2em;
+      text-align: left;
+      margin: 0 0 0.75rem 0;
+      color: var(--headerColor);
+    }
+    .cs-li-text {
+      /* 14px - 16px */
+      font-size: clamp(0.875rem, 1.8vw, 1rem);
+      line-height: 1.5em;
+      text-align: left;
+      margin: 0;
+      color: var(--bodyTextColor);
+    }
+    .cs-image-group {
+      /* scales the whole group based on the view width size and stop when that vales equals .74em, resets at desktop */
+      font-size: min(2.32vw, 0.74em);
+      width: 39.375em;
+      height: 40.9375em;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .cs-image-group::before {
+      content: '';
+      width: 22.375em;
+      height: auto;
+      aspect-ratio: 1/1;
+      background: #4e4b66;
+      opacity: 0.2;
+      display: block;
+      position: absolute;
+      top: 9em;
+      bottom: 11.125em;
+      left: 5.5em;
+    }
+    .cs-picture {
+      position: absolute;
+    }
+    .cs-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .cs-picture1 {
+      width: 19.0625em;
+      height: auto;
+      border: 4px solid #ffffff;
+      top: 0;
+      bottom: 17.5625em;
+      left: 0;
+    }
+    .cs-picture2 {
+      width: 25.8125em;
+      height: auto;
+      border: 4px solid #ffffff;
+      top: 16.9375em;
+      right: 0;
+      bottom: 0;
+    }
+    .cs-picture3 {
+      width: 13.625em;
+      height: 9.6875em;
+      top: 5.25em;
+      right: 4.6875em;
+    }
+    .cs-graphic {
+      /* 131px - 255px */
+      width: clamp(5.8175rem, 15vw, 15.9375rem);
+      height: auto;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+    }
+    .cs-button-solid {
+      font-size: 1rem;
+      font-weight: 700;
+      /* 46px - 56px */
+      line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+      text-align: center;
+      text-decoration: none;
+      min-width: 9.375rem;
+      margin: 0;
+      /* prevents padding from adding to the width */
+      box-sizing: border-box;
+      padding: 0 1.5rem;
+      background-color: var(--primary);
+      color: #fff;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+    }
+    .cs-button-solid:before {
+      content: '';
+      width: 0%;
+      height: 100%;
+      background: #000;
+      opacity: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: width 0.3s;
+    }
+    .cs-button-solid:hover:before {
+      width: 100%;
+    }
+  }
+  /* Small Desktop - 1024px */
+  @media only screen and (min-width: 64rem) {
+    .cs-container {
+      max-width: 80rem;
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .cs-content {
+      width: 47%;
+      align-self: center;
+    }
+    .cs-li {
+      align-items: center;
+    }
+    .cs-image-group {
+      font-size: min(1.2vw, 1em);
+      height: auto;
+      flex: none;
+    }
+  }
+</style>
