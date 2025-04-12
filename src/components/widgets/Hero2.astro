@@ -24,7 +24,7 @@ const {
 ---
 
 <section
-  class="relative not-prose py-10 lg:py-40"
+  class="relative not-prose"
   {...id ? { id } : {}}
 >
   <!-- ============================================ -->
@@ -32,7 +32,7 @@ const {
   <!-- ============================================ -->
 
   <WidgetWrapper>
-    <div class="cs-container">
+    <div class="flex gap-x-20 justify-center items-center">
       <div
         class="cs-content intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
       >
@@ -52,9 +52,9 @@ const {
         decoding="async"
         src={HeroImage}
         alt="Kathy Mach"
-        width="480"
-        height="600"
-        class="min-h-[400px] xl:w-[500px] xl:h-[800px] rounded-img intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        width="976"
+        height="1600"
+        class="max-w-[488px] max-h-[800px] rounded-img intersect-once drop-shadow-2xl intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
       />
     </div>
   </WidgetWrapper>
