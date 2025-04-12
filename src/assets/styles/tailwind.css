@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer theme {
+  .rounded-img {
+    border-radius: clamp(6.25rem, 17vw, 12.5rem) 0 clamp(6.25rem, 17vw, 12.5rem) 0;
+  }
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);

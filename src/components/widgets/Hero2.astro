@@ -1,6 +1,7 @@
 ---
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
+import WidgetWrapper from '../ui/WidgetWrapper.astro';
 
 import { Picture } from 'astro:assets';
 
@@ -30,7 +31,7 @@ const {
   <!--                    Hero                      -->
   <!-- ============================================ -->
 
-  <section>
+  <WidgetWrapper>
     <div class="cs-container">
       <div
         class="cs-content intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
@@ -39,14 +40,11 @@ const {
         <h1 class="cs-title">
           {title}
         </h1>
-        <slot name="content" />
+        <div class="flex flex-col gap-y-10">
+          <slot name="content" />
 
-        <slot name="action" />
-        <a
-          href=""
-          class="cs-button-solid"
-          >Schedule An Appointment</a
-        >
+          <slot name="action" />
+        </div>
       </div>
       <!--Hero Image-->
       <Picture
@@ -54,12 +52,12 @@ const {
         decoding="async"
         src={HeroImage}
         alt="Kathy Mach"
-        width="570"
-        height="701"
-        class="cs-picture intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        width="480"
+        height="600"
+        class="min-h-[400px] xl:w-[500px] xl:h-[800px] rounded-img intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
       />
     </div>
-  </section>
+  </WidgetWrapper>
   <!--Change the svg path fill color to whatever color the section below is so you can match it and create the illusion it is all one piece-->
   <svg
     class="cs-wave"
@@ -91,7 +89,7 @@ const {
       /* 116px - 164px top */
       /* 60px - 100px  bottom */
       /* padding: clamp(7.25rem, 16.82vw, 10.25rem) 1rem clamp(3.75rem, 7.82vw, 6.25rem); */
-      background-color: #f7f7f7;
+      background-color: #fafafa;
       /* clips the svg wave from overflowing */
       overflow: hidden;
       position: relative;
@@ -189,10 +187,10 @@ const {
       width: 100%;
       max-width: 35.625rem;
       /* 400px - 712px */
-      height: clamp(25rem, 95vw, 44.5rem);
+      /* height: clamp(25rem, 95vw, 44.5rem); */
       /* 100px - 200px */
       border-radius: clamp(6.25rem, 17vw, 12.5rem) 0 clamp(6.25rem, 17vw, 12.5rem) 0;
-      box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.16);
+      /* box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.16); */
       /* clips the img tag corners */
       overflow: hidden;
       display: block;
@@ -244,7 +242,7 @@ const {
     }
     section .cs-picture {
       /* 623px - 814px */
-      height: clamp(38.9375rem, 60vw, 50.875rem);
+      /* height: clamp(38.9375rem, 60vw, 50.875rem); */
     }
     section .cs-wave {
       width: 100%;
