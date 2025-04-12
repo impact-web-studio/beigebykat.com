@@ -12,6 +12,7 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Button from '~/components/ui/Button.astro';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -21,53 +22,29 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
-
-  <Hero
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
-  >
-    <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white highlight"> Astro 5.0</span> + Tailwind CSS
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 5.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages &
-      Blogs.
-    </Fragment>
-  </Hero>
-
   <Hero2
-    title="Hey, I'm Kathy Mach"
-    tagline="behind the chair | beige by kat"
+    title="Toronto Balayage Specialist"
+    tagline="a soft space for your transformation"
   >
     <Fragment slot="content">
-      <p>
-        I'm a big believer in transforming hair that brings out who you are inside - in creating looks that match your
-        unique style and energy. My goal is to make sure every woman who sits in my chair leaves feeling not just
-        beautiful, but empowered and ready to take on the world.My role in every session is to listen, collaborate, and
-        bring your hair vision to life in a way that feels authentically you. <br /><br />Outside of the salon, I'm a
-        mom, a traveler, and a dreamer. I find inspiration in new places, good conversations, and the quiet moments in
-        between. You can often find me soaking up new experiences, spending quality time with my son, getting lost in a
-        good book, or brainstorming new business ideas. These passions help keep me inspired and nurtures the energy
-        that fuels the work I do. <br /><br />”Because this isn't just about hair. <br />It's about showing up for
-        yourself. <br />It's about becoming the woman you already are — just a little more lit up.”<br /><br />Thanks
-        for being here with me on this journey. <br /><br />— Kathy
+      <p class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+        This isn’t just about hair — it’s about how you feel walking out of the studio. At Beige by Kathy, every session
+        is an intentional experience where your beauty, your story, and your time matter. I specialize in elevated,
+        lived-in balayage — rich, dimensional colour that grows out effortlessly and complements your natural tones.
+        Whether you’re coming in to refresh, reinvent, or reclaim a part of yourself, you’re in the right place.
       </p>
+    </Fragment>
+    <Fragment slot="action">
+      <div class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+        <Button
+          variant="primary"
+          text="Schedule an Appointment"
+          href="https://www.kathymach.com/appointments"
+          target="_blank"
+          type="button"
+          icon="tabler:calendar-event"
+        />
+      </div>
     </Fragment>
   </Hero2>
 

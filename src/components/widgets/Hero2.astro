@@ -23,31 +23,25 @@ const {
 ---
 
 <section
-  class="relative md:-mt-[76px] not-prose"
+  class="relative not-prose py-10 lg:py-40"
   {...id ? { id } : {}}
 >
   <!-- ============================================ -->
   <!--                    Hero                      -->
   <!-- ============================================ -->
 
-  <section id="hero-856">
+  <section>
     <div class="cs-container">
-      <div class="cs-content">
-        <span
-          class="cs-topper intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-          >{tagline}</span
-        >
-        <h1
-          class="cs-title intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-        >
+      <div
+        class="cs-content intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+      >
+        <span class="iws-tagline">{tagline}</span>
+        <h1 class="cs-title">
           {title}
         </h1>
         <slot name="content" />
-        <p
-          class="cs-text intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-        >
-          {content}
-        </p>
+
+        <slot name="action" />
         <a
           href=""
           class="cs-button-solid"
@@ -96,7 +90,7 @@ const {
       text-align: center;
       /* 116px - 164px top */
       /* 60px - 100px  bottom */
-      padding: clamp(7.25rem, 16.82vw, 10.25rem) 1rem clamp(3.75rem, 7.82vw, 6.25rem);
+      /* padding: clamp(7.25rem, 16.82vw, 10.25rem) 1rem clamp(3.75rem, 7.82vw, 6.25rem); */
       background-color: #f7f7f7;
       /* clips the svg wave from overflowing */
       overflow: hidden;
@@ -120,21 +114,22 @@ const {
       align-items: center;
       flex-direction: column;
     }
-    section .cs-topper {
+    section .iws-tagline {
       font-size: 1rem;
       line-height: 1.2em;
       text-transform: uppercase;
       text-align: inherit;
       letter-spacing: 0.1em;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--aw-color-primary);
       margin-bottom: 0.25rem;
       display: block;
+      font-family: var(--aw-font-sans);
     }
     section .cs-title {
       /* 39px - 61px */
       font-size: clamp(2.4375rem, 5vw, 3.8125rem);
-      font-weight: 900;
+      font-weight: lighter;
       line-height: 1.2em;
       text-align: center;
       /* 23 characters including spaces wide */
@@ -142,6 +137,7 @@ const {
       margin: 0 0 1rem 0;
       color: var(--headerColor);
       position: relative;
+      font-family: var(--aw-font-heading);
     }
     section .cs-text {
       /* 16px - 20px */
