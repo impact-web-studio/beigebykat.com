@@ -8,13 +8,14 @@ import Button from '~/components/ui/Button.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
-import { undefined } from 'astro:schema';
 
 interface Link {
   text?: string;
   href?: string;
   ariaLabel?: string;
   icon?: string;
+  sectionId?: string; // Added for section tracking
+  isHome?: boolean; // Added to identify home link
 }
 
 interface MenuLink extends Link {
@@ -74,18 +75,19 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <nav
       class="items-center w-full lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-y-visible lg:overflow-x-auto lg:justify-self-center"
       aria-label="Main navigation"
+      id="main-navigation"
     >
       <ul
         class="flex flex-col lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center"
       >
         {
-          links.map(({ text, href, links }) => (
+          links.map(({ text, href, links, sectionId, isHome }) => (
             <li class={links?.length ? 'dropdown' : ''}>
               {links?.length ? (
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-3 py-3 flex items-center whitespace-nowrap uppercase  font-serif"
+                    class="hover:text-link dark:hover:text-white px-3 py-3 flex items-center whitespace-nowrap uppercase font-serif"
                   >
                     {text}{' '}
                     <Icon
@@ -94,14 +96,17 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     />
                   </button>
                   <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-dark rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
-                    {links.map(({ text: text2, href: href2 }) => (
+                    {links.map(({ text: text2, href: href2, sectionId: sectionId2, isHome: isHome2 }) => (
                       <li>
                         <a
                           class:list={[
                             'first:rounded-t last:rounded-b lg:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap uppercase !font-serif',
-                            { 'aw-link-active': href2 === currentPath },
+                            { 'text-primary': href2 === currentPath },
                           ]}
                           href={href2}
+                          data-section-id={sectionId2 || ''}
+                          data-is-home={isHome2 ? 'true' : 'false'}
+                          data-full-href={href2}
                         >
                           {text2}
                         </a>
@@ -112,10 +117,13 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-2 py-3 xl:px-4 flex items-center whitespace-nowrap uppercase font-normal font-serif',
-                    { 'aw-link-active': href === currentPath },
+                    'nav-link hover:text-link dark:hover:text-white px-2 py-3 xl:px-4 flex items-center whitespace-nowrap uppercase font-normal font-serif',
+                    { 'text-primary': href === currentPath },
                   ]}
                   href={href}
+                  data-section-id={sectionId || ''}
+                  data-is-home={isHome ? 'true' : 'false'}
+                  data-full-href={href}
                 >
                   {text}
                 </a>
@@ -157,3 +165,142 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<script>
+  // Improved navigation functionality to handle view transitions
+  function setupNavigationHighlighting() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('header a');
+    const currentPath = window.location.pathname;
+    const isHomePage = currentPath === '/' || currentPath === '';
+
+    // Active class to use when a section is in viewport
+    const ACTIVE_CLASS = 'text-primary transition-colors duration-300 ease-in-out';
+
+    // Reset all links first
+    function resetAllLinks() {
+      navLinks.forEach((link) => {
+        link.classList.remove(...ACTIVE_CLASS.split(' '));
+      });
+    }
+
+    // Highlight the appropriate link based on current URL path
+    function highlightCurrentPageLink() {
+      resetAllLinks();
+
+      navLinks.forEach((link) => {
+        const linkPath = link.getAttribute('href');
+        const linkFullHref = link.getAttribute('data-full-href');
+        const linkIsHome = link.getAttribute('data-is-home') === 'true';
+
+        // Check if this link matches the current path
+        if (
+          (!isHomePage && linkPath === currentPath) ||
+          (!isHomePage && linkPath === `/${trimSlash(currentPath)}`) ||
+          (!isHomePage && `/${trimSlash(linkPath)}` === currentPath) ||
+          (!isHomePage && linkFullHref === currentPath) ||
+          (isHomePage && linkIsHome && window.scrollY < 50)
+        ) {
+          link.classList.add(...ACTIVE_CLASS.split(' '));
+        }
+      });
+    }
+
+    // Special handling for top of page - activate home link when at the top
+    function handleScrollTop() {
+      if (isHomePage && window.scrollY < 50) {
+        resetAllLinks();
+
+        // Add active class to home link
+        const homeLink = document.querySelector('#main-navigation a[data-is-home="true"]');
+        if (homeLink) {
+          homeLink.classList.add(...ACTIVE_CLASS.split(' '));
+        }
+      }
+    }
+
+    // Set up intersection observer for section highlighting on home page
+    function setupSectionObserver() {
+      if (!isHomePage) return;
+
+      const observerOptions = {
+        rootMargin: '-100px 0px -70% 0px',
+        threshold: 0,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+
+            // Don't process if we're at the top of the page
+            if (window.scrollY < 50) return;
+
+            resetAllLinks();
+
+            // Add active class to corresponding nav link
+            const correspondingLink = document.querySelector(`#main-navigation a[data-section-id="${id}"]`);
+            if (correspondingLink) {
+              correspondingLink.classList.add(...ACTIVE_CLASS.split(' '));
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    }
+
+    // Handle click events for smooth scrolling
+    function setupClickHandlers() {
+      navLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const isHome = link.getAttribute('data-is-home') === 'true';
+          const sectionId = link.getAttribute('data-section-id');
+
+          // Special handling for home link
+          if (isHome) {
+            if (isHomePage) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            // Don't prevent default for home link when on other pages
+            return;
+          }
+
+          // Regular section links - only handle scroll on home page
+          if (sectionId && sectionId !== '' && isHomePage) {
+            e.preventDefault();
+            const section = document.getElementById(sectionId);
+            if (section) {
+              section.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    }
+
+    // Initial setup
+    highlightCurrentPageLink();
+    setupSectionObserver();
+    setupClickHandlers();
+
+    // Add scroll listener only for home page
+    if (isHomePage) {
+      window.addEventListener('scroll', handleScrollTop);
+    }
+  }
+
+  // Setup on initial page load
+  document.addEventListener('astro:page-load', setupNavigationHighlighting);
+
+  // Setup on view transitions
+  document.addEventListener('astro:after-swap', setupNavigationHighlighting);
+
+  // Helper function to trim slashes like in the server-side version
+  function trimSlash(s) {
+    return s.replace(/^\/+|\/+$/g, '');
+  }
+</script>

@@ -1,25 +1,38 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getHomePermalink, getAsset } from './utils/permalinks';
 
 export const headerData = {
   links: [
     {
       text: 'Home',
-      href: '#',
+      href: getHomePermalink(),
+      isHome: true, // Special flag for home link
+      sectionId: 'home',
     },
     {
       text: 'About',
-      href: '#about',
+      href: getHomePermalink() + '#about',
+      sectionId: 'about',
     },
     {
       text: 'Services',
-      href: '#services',
+      href: getHomePermalink() + '#services',
+      sectionId: 'services',
     },
     {
       text: 'Pricing',
-      href: '#pricing',
+      href: getHomePermalink() + '#pricing',
+      sectionId: 'pricing',
     },
   ],
-  actions: [{text: 'Contact', href: '/contact'}, { text: 'Book Appointment', href: 'https://github.com/onwidget/astrowind', target: '_blank' , icon:'material-symbols-light:arrow-outward-rounded'},],
+  actions: [
+    { text: 'Contact', href: '/contact' },
+    {
+      text: 'Book Appointment',
+      href: 'https://github.com/onwidget/astrowind',
+      target: '_blank',
+      icon: 'material-symbols-light:arrow-outward-rounded',
+    },
+  ],
 };
 
 export const footerData = {
@@ -43,7 +56,7 @@ export const footerData = {
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
   ],
- footNote: `
+  footNote: `
   Designed & Developed by <a class="text-accent underline dark:text-default" href="https://impactwebstudio.ca/"> Impact Web Studio</a> · All rights reserved.
 `,
 };
