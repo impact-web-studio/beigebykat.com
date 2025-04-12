@@ -167,6 +167,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </header>
 
 <script>
+  // TODO: fix transition bug and URL
+
+  import { getHomePermalink } from '~/utils/permalinks';
+
   // Improved navigation functionality to handle view transitions
   function setupNavigationHighlighting() {
     const sections = document.querySelectorAll('section[id]');
