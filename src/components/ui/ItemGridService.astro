@@ -11,7 +11,8 @@ const {
   panel: panelClass = '',
   title: titleClass = '',
   description: descriptionClass = '',
-  image: defaultImageClass = 'w-full !object-cover',
+  image: defaultImageClass = '',
+  price: priceClass = '',
   action: actionClass = '',
 } = classes;
 ---
@@ -33,13 +34,13 @@ const {
       )}
     >
       {items.map(({ title, price, description, image, callToAction, classes: itemClasses = {} }) => (
-        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-          <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
-            <div class="flex justify-center">
+        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade bg-white rounded-sm shadow-sm overflow-hidden">
+          <div class={twMerge('flex flex-row max-w-md gap-2', panelClass, itemClasses?.panel)}>
+            <div class="flex justify-center w-full">
               {image && (
                 <Image
                   src={image}
-                  class={twMerge('w-[320px] h-full mr-2 rtl:mr-0 rtl:ml-2', defaultImageClass, itemClasses?.image)}
+                  class={twMerge('w-[500px] h-full mr-2 rtl:mr-0 rtl:ml-2', defaultImageClass, itemClasses?.image)}
                   alt="alt"
                   width={500}
                   height={1000}
@@ -47,9 +48,14 @@ const {
                 />
               )}
             </div>
-            <div class="mt-0.5">
+            <div class="mt-0.5 p-3">
               {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
-              {price && <p set:html={price} />}
+              {price && (
+                <p
+                  class={twMerge(priceClass, itemClasses?.price)}
+                  set:html={price}
+                />
+              )}
               {description && (
                 <p
                   class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}

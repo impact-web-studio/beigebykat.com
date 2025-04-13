@@ -16,7 +16,8 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Button from '~/components/ui/Button.astro';
 import Services from '~/components/widgets/Services.astro';
 
-import Img1 from '~/assets/images/kathy-hero.jpeg';
+// Service Images
+import HighContrastBlonde from '~/assets/images/services/high-contrast-blonde.jpg';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -61,13 +62,25 @@ const metadata = {
     id="services"
     tagline="Services"
     title="Styles & Colours"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023 and 2024."
+    subtitle="A consultation will be held to discuss your desired look, and the total price will be provided before we begin your appointment. If you have any questions regarding our services, please don't hesitate to contact me."
     items={[
       {
         title: 'Balayages',
         description:
           'A consultation will be held to discuss your desired look, and the total price will be provided before we begin your appointment.',
-        image: Img1,
+        image: HighContrastBlonde,
+        price: 'from $440+',
+        callToAction: {
+          text: 'Schedule an Appointment',
+          href: 'https://www.kathymach.com/appointments',
+          target: '_blank',
+        },
+      },
+      {
+        title: 'Balayages',
+        description:
+          'A consultation will be held to discuss your desired look, and the total price will be provided before we begin your appointment.',
+        image: HighContrastBlonde,
         price: 'starting from $440',
         callToAction: {
           text: 'Schedule an Appointment',
@@ -76,37 +89,67 @@ const metadata = {
         },
       },
       {
-        title: 'Ready-to-use Components',
+        title: 'Balayages',
         description:
-          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        // icon: 'tabler:components',
+          'A consultation will be held to discuss your desired look, and the total price will be provided before we begin your appointment.',
+        image: HighContrastBlonde,
+        price: 'starting from $440',
+        callToAction: {
+          text: 'Schedule an Appointment',
+          href: 'https://www.kathymach.com/appointments',
+          target: '_blank',
+        },
       },
       {
-        title: 'Best Practices',
+        title: 'Balayages',
         description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        // icon: 'tabler:list-check',
+          'A consultation will be held to discuss your desired look, and the total price will be provided before we begin your appointment.',
+        image: HighContrastBlonde,
+        price: 'starting from $440',
+        callToAction: {
+          text: 'Schedule an Appointment',
+          href: 'https://www.kathymach.com/appointments',
+          target: '_blank',
+        },
       },
       {
-        title: 'Excellent Page Speed',
+        title: 'Balayages',
         description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        // icon: 'tabler:rocket',
+          'A consultation will be held to discuss your desired look, and the total price will be provided before we begin your appointment.',
+        image: HighContrastBlonde,
+        price: 'starting from $440',
+        callToAction: {
+          text: 'Schedule an Appointment',
+          href: 'https://www.kathymach.com/appointments',
+          target: '_blank',
+        },
       },
       {
-        title: 'Search Engine Optimization (SEO)',
+        title: 'Balayages',
         description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        // icon: 'tabler:arrows-right-left',
-      },
-      {
-        title: 'Open to new ideas and contributions',
-        description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        // icon: 'tabler:bulb',
+          'A consultation will be held to discuss your desired look, and the total price will be provided before we begin your appointment.',
+        image: HighContrastBlonde,
+        price: 'starting from $440',
+        callToAction: {
+          text: 'Schedule an Appointment',
+          href: 'https://www.kathymach.com/appointments',
+          target: '_blank',
+        },
       },
     ]}
-  />
+  >
+    <Fragment slot="action">
+      <div class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+        <Button
+          variant="primary"
+          text="Schedule an Appointment"
+          href="https://www.kathymach.com/appointments"
+          target="_blank"
+          type="button"
+        />
+      </div>
+    </Fragment>
+  </Services>
 
   <!-- Features Widget *************** -->
 

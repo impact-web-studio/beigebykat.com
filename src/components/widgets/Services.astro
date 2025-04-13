@@ -35,12 +35,19 @@ const {
   <ItemGridService
     items={items}
     columns={columns}
-    defaultIcon={defaultIcon}
     classes={{
       container: '',
-      title: 'md:text-[1.3rem]',
-      image: 'object-cover',
+      title: 'text-primary font-serif md:text-[1.3rem]',
+      image: 'w-full object-cover',
+      price: 'text-md capitalize font-serif',
+      action: 'text-primary font-sans font-semibold text-sm hover:text-black transition-all duration-300 ease-in-out',
       ...((classes?.items as Record<string, never>) ?? {}),
     }}
   />
+  <div class="flex items-center justify-center mt-16">
+    <slot
+      name="action"
+      class="self-center"
+    />
+  </div>
 </WidgetWrapper>
