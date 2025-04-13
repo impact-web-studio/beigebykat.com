@@ -1,0 +1,125 @@
+---
+import type { AccordionItem } from '~/types';
+import { twMerge } from 'tailwind-merge';
+import Button from './Button.astro';
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  items: AccordionItem[];
+  columns?: 1 | 2 | 3 | 4;
+  defaultIcon?: string;
+  classes?: {
+    container?: string;
+    panel?: string;
+    title?: string;
+    description?: string;
+    icon?: string;
+    action?: string;
+  };
+}
+
+const { items = [], columns = 1, defaultIcon = 'tabler:chevron-down', classes = {} } = Astro.props;
+
+const {
+  container: containerClass = '',
+  panel: panelClass = '',
+  title: titleClass = '',
+  description: descriptionClass = '',
+  icon: defaultIconClass = 'transition-transform duration-300', // Removed text-primary
+  action: actionClass = '',
+} = classes;
+---
+
+{
+  items && items.length > 0 && (
+    <div
+      class={twMerge(
+        `grid mx-auto gap-8 md:gap-y-12 ${
+          columns === 4
+            ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'
+            : columns === 3
+              ? 'lg:grid-cols-3 sm:grid-cols-2'
+              : columns === 2
+                ? 'sm:grid-cols-2'
+                : ''
+        }`,
+        containerClass
+      )}
+    >
+      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
+        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+          <div class={twMerge('flex flex-col max-w-md', panelClass, itemClasses?.panel)}>
+            <button
+              class="flex justify-between items-center w-full text-left cursor-pointer group accordion-toggle"
+              aria-expanded="false"
+              aria-controls={`accordion-panel-${title?.replace(/\s+/g, '-').toLowerCase()}`}
+            >
+              <h3
+                class={twMerge(
+                  'text-xl font-bold accordion-title transition-colors duration-300',
+                  titleClass,
+                  itemClasses?.title
+                )}
+              >
+                {title}
+              </h3>
+              <Icon
+                name={icon || defaultIcon}
+                class={twMerge('w-7 h-7 accordion-icon', defaultIconClass, itemClasses?.icon)}
+              />
+            </button>
+
+            <div
+              id={`accordion-panel-${title?.replace(/\s+/g, '-').toLowerCase()}`}
+              class="overflow-hidden transition-all duration-300 ease-in-out accordion-content"
+              style="max-height: 0px;"
+            >
+              {description && (
+                <p
+                  class={twMerge('mt-3 text-muted', descriptionClass, itemClasses?.description)}
+                  set:html={description}
+                />
+              )}
+              {callToAction && (
+                <div class={twMerge('mt-3', actionClass, itemClasses?.actionClass)}>
+                  <Button
+                    variant="link"
+                    {...callToAction}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+<script>
+  // This is an Astro script tag which executes client-side
+  document.addEventListener('DOMContentLoaded', () => {
+    const accordionToggles = document.querySelectorAll('.accordion-toggle');
+
+    accordionToggles.forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const icon = toggle.querySelector('.accordion-icon');
+        const titleText = toggle.querySelector('.accordion-title');
+        const content = toggle.nextElementSibling;
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+
+        toggle.setAttribute('aria-expanded', !expanded);
+
+        if (!expanded) {
+          content.style.maxHeight = `${content.scrollHeight}px`;
+          icon.classList.add('rotate-180', 'text-primary');
+          titleText.classList.add('text-primary');
+        } else {
+          content.style.maxHeight = '0px';
+          icon.classList.remove('rotate-180', 'text-primary');
+          titleText.classList.remove('text-primary');
+        }
+      });
+    });
+  });
+</script>

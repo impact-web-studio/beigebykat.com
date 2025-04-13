@@ -141,6 +141,25 @@ export interface Item {
   image?: Image;
 }
 
+export interface AccordionItem {
+  title?: string;
+  description?: string;
+  icon?: string;
+  callToAction?: {
+    text: string;
+    href: string;
+    target?: string;
+    rel?: string;
+  };
+  classes?: {
+    panel?: string;
+    title?: string;
+    description?: string;
+    icon?: string;
+    actionClass?: string;
+  };
+}
+
 export interface ServiceItem {
   title?: string;
   description?: string;
