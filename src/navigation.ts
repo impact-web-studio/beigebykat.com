@@ -19,9 +19,9 @@ export const headerData = {
       sectionId: 'services',
     },
     {
-      text: 'Pricing',
-      href: getHomePermalink() + '#pricing',
-      sectionId: 'pricing',
+      text: 'FAQs',
+      href: getHomePermalink() + '#faqs',
+      sectionId: 'faqs',
     },
   ],
   actions: [
