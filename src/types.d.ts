@@ -141,6 +141,15 @@ export interface Item {
   image?: Image;
 }
 
+export interface ServiceItem {
+  title?: string;
+  description?: string;
+  price?: string;
+  classes?: Record<string, string>;
+  callToAction?: CallToAction;
+  image?: Image;
+}
+
 export interface Price {
   title?: string;
   subtitle?: string;
@@ -196,6 +205,12 @@ export interface ItemGrid {
   classes?: Record<string, string>;
 }
 
+export interface ItemGridService {
+  items?: Array<ServiceItem>;
+  columns?: number;
+  classes?: Record<string, string>;
+}
+
 export interface Collapse {
   iconUp?: string;
   iconDown?: string;
@@ -245,6 +260,19 @@ export interface Features extends Omit<Headline, 'classes'>, Widget {
   image?: string | unknown;
   video?: Video;
   items?: Array<Item>;
+  columns?: number;
+  defaultIcon?: string;
+  callToAction1?: CallToAction;
+  callToAction2?: CallToAction;
+  isReversed?: boolean;
+  isBeforeContent?: boolean;
+  isAfterContent?: boolean;
+}
+
+export interface Services extends Omit<Headline, 'classes'>, Widget {
+  image?: string | unknown;
+  video?: Video;
+  items?: Array<ServiceItem>;
   columns?: number;
   defaultIcon?: string;
   callToAction1?: CallToAction;
