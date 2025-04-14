@@ -13,7 +13,7 @@ import Button from '~/components/ui/Button.astro';
     <div class="absolute inset-0 bg-white"></div>
   </Fragment>
   <section>
-    <div class="cs-container">
+    <div class="cs-container flex flex-col-reverse lg:flex-row">
       <div
         class="cs-image-group intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
       >
@@ -144,8 +144,6 @@ import Button from '~/components/ui/Button.astro';
       /* changes to 1280px at desktop */
       max-width: 36.5rem;
       margin: auto;
-      display: flex;
-      flex-direction: column;
       align-items: center;
       /* 48px - 64px */
       gap: clamp(3rem, 6vw, 4rem);
