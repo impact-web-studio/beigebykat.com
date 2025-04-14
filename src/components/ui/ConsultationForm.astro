@@ -55,29 +55,24 @@ interface ConsultationForm {
   description?: string;
 }
 
-const {
-  steps,
-  disclaimer,
-  button = 'Submit Project Details',
-  description = "We'll review your project details and get back to you within 24-48 hours.",
-} = Astro.props as ConsultationForm;
+const { steps, disclaimer, button = 'Submit Form' } = Astro.props as ConsultationForm;
 
 // Generate a unique ID for this form instance
-const formId = `consultation-form-${Math.random().toString(36).substring(2, 9)}`;
+const formId = `new-client-form-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
 <form
   id={formId}
-  name="Consultation Form"
+  name="New Client Form"
   method="POST"
   data-netlify="true"
-  class="consultation-form"
+  class="new-client-form"
   novalidate
 >
   <input
     type="hidden"
     name="form-name"
-    value="Consultation Form"
+    value="New Client Form"
   />
 
   <!-- Step indicator -->
@@ -270,23 +265,15 @@ const formId = `consultation-form-${Math.random().toString(36).substring(2, 9)}`
       </div>
     ))
   }
-
-  {
-    description && (
-      <div class="mt-3 text-center">
-        <p class="text-sm text-gray-600 dark:text-gray-400">{description}</p>
-      </div>
-    )
-  }
 </form>
 
 <style>
-  .consultation-form .step-indicator-item {
+  .new-client-form .step-indicator-item {
     flex: 1;
     position: relative;
   }
 
-  .consultation-form .step-indicator-item:not(:last-child)::after {
+  .new-client-form .step-indicator-item:not(:last-child)::after {
     content: '';
     position: absolute;
     top: 1rem;
@@ -296,13 +283,13 @@ const formId = `consultation-form-${Math.random().toString(36).substring(2, 9)}`
     background-color: #e5e7eb;
   }
 
-  .consultation-form .step-indicator-item .step-number {
+  .new-client-form .step-indicator-item .step-number {
     position: relative;
     z-index: 1;
     margin: 0 auto;
   }
 
-  .consultation-form .step-progress-bar {
+  .new-client-form .step-progress-bar {
     max-width: 100%;
   }
 </style>
@@ -537,12 +524,12 @@ const formId = `consultation-form-${Math.random().toString(36).substring(2, 9)}`
 </script>
 
 <style>
-  .consultation-form .step-indicator-item {
+  .new-client-form .step-indicator-item {
     flex: 1;
     position: relative;
   }
 
-  .consultation-form .step-indicator-item:not(:last-child)::after {
+  .new-client-form .step-indicator-item:not(:last-child)::after {
     content: '';
     position: absolute;
     top: 14px;
@@ -552,13 +539,13 @@ const formId = `consultation-form-${Math.random().toString(36).substring(2, 9)}`
     background-color: #e5e7eb;
   }
 
-  .consultation-form .step-indicator-item .step-number {
+  .new-client-form .step-indicator-item .step-number {
     position: relative;
     z-index: 1;
     margin: 0 auto;
   }
 
-  .consultation-form .step-progress-bar {
+  .new-client-form .step-progress-bar {
     max-width: 100%;
   }
 
