@@ -36,9 +36,10 @@ const {
     items={items}
     columns={columns}
     classes={{
-      container: '',
+      container: 'h-full',
+      panel: 'h-full',
       title: 'text-primary font-serif md:text-[1.3rem]',
-      image: 'w-full object-cover',
+      image: 'w-full h-full object-cover',
       price: 'text-md capitalize font-serif',
       action: 'text-primary font-sans font-semibold text-sm hover:text-black transition-all duration-300 ease-in-out',
       ...((classes?.items as Record<string, never>) ?? {}),
