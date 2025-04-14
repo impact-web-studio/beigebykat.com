@@ -1,7 +1,11 @@
+---
+const { width = '600', height = '450' } = Astro.props;
+---
+
 <iframe
   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2885.8750144049645!2d-79.42368832305323!3d43.67156915124149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3488a1e6be51%3A0x6adae750771e61ae!2sLisa%20Dinh%20Hair%20Studio!5e0!3m2!1sen!2sca!4v1744613878105!5m2!1sen!2sca"
-  width="600"
-  height="450"
+  width={width}
+  height={height}
   style="border:0;"
   allowfullscreen=""
   loading="lazy"

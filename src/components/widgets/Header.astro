@@ -173,6 +173,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('header a');
     const currentPath = window.location.pathname;
+    console.log('setup triggered, current page', currentPath);
     const isHomePage = currentPath === '/' || currentPath === '';
 
     // Active class to use when a section is in viewport
@@ -298,7 +299,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   document.addEventListener('astro:page-load', setupNavigationHighlighting);
 
   // Setup on view transitions
-  document.addEventListener('astro:after-swap', setupNavigationHighlighting);
+  // document.addEventListener('astro:after-preparation', setupNavigationHighlighting);
 
   // Helper function to trim slashes like in the server-side version
   function trimSlash(s) {
