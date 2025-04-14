@@ -156,47 +156,59 @@ const metadata = {
   <FAQs
     id="faqs"
     title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
     tagline="FAQs"
     columns={2}
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Accordion Item 1',
-        description: "This is the first accordion item's content that will be shown when expanded.",
+        title: 'How can I prep for my hair appointment?',
+        description:
+          '<b>To ensure the best results, please arrive at your appointment with clean hair</b> — no products, oils, or styling products should be in your hair. We <b>highly recommend avoiding drug store shampoos and products</b> before your appointment, as they may contain ingredients that can cause chemical reactions or affect the final result. Using professional-grade products, which I can recommend during your appointment, will help maintain the integrity of your hair and ensure the color and texture turn out as expected.',
+      },
+      {
+        title: 'How do I maintain my hair after my appointment?',
+        description:
+          "To keep your balayage looking fresh, <b>I recommend refreshing it every 4-6 months</b>, depending on how quickly your hair grows.<br/><br/> You can also <b>opt for a toner service every 2-3 months to maintain</b> that gorgeous color. This is completely optional but can help keep your color vibrant in between major appointments.<br/><br/> <b>At-home care is key!</b> I'll provide recommendations for professional-grade products that will keep your hair healthy, shiny, and vibrant until your next visit. Consistently using the right products will ensure your color lasts longer and your hair stays in great condition.",
+      },
+      {
+        title: 'Which payment methods are accepted?',
+        description: 'I accept <b>E-transfer</b> and <b>cash.</b>',
         icon: 'tabler:chevron-down',
-        callToAction: {
-          text: 'Learn more',
-          href: '#',
-        },
       },
       {
-        title: 'Accordion Item 2',
-        description: "This is the second accordion item's content.",
-        callToAction: {
-          text: 'Read more',
-          href: '#',
-        },
+        title: 'What is your cancellation policy?',
+        description:
+          "Your time and mine are valuable, so I kindly ask for <b>48 business hours notice</b> if you need to cancel or reschedule your appointment. If I do not receive this notice, <b>a cancellation fee</b> will apply in order to rebook. If you no-show on the day of your appointment, I'm unable to reschedule without a cancellation fee. <b>Same-day cancellations and no-shows will not be rebooked</b>. Please plan to arrive 5 minutes early for your appointment. <b>If you arrive more than 15 minutes late, your appointment may need to be rescheduled or canceled, and a cancellation fee will be charged in order to book a new appointment.</b>",
       },
       {
-        title: 'Accordion Item 1',
-        description: "This is the first accordion item's content that will be shown when expanded.",
-        icon: 'tabler:chevron-down',
-        callToAction: {
-          text: 'Learn more',
-          href: '#',
-        },
+        title: 'What should I wear to my appointment?',
+        description:
+          "Since we're working with bleach and color, please avoid wearing your favorite or nicest clothes. Accidents can happen, and there's always a chance of some color splatter. <b>Wear something comfortable that you don't mind getting a little messy!</b>",
       },
       {
-        title: 'Accordion Item 2',
-        description: "This is the second accordion item's content.",
-        callToAction: {
-          text: 'Read more',
-          href: '#',
-        },
+        title: "What should I do if I'm unhappy with my results?",
+        description:
+          "I want you to be absolutely thrilled with your hair! If for any reason you're not satisfied with your service, <b>please let me know within 7 days of your appointment</b> so we can work together to fix any issues. I offer complimentary adjustments within that time frame, but after 7 days, additional charges may apply.",
+      },
+      {
+        title: 'Do you offer any hair treatments?',
+        description:
+          "Yes! <b>Nourishing treatments are offered such as deep conditioning, Olaplex treatments, and scalp massages</b> to keep your hair healthy and strong. If you're interested, please ask during your appointment, and I'll guide you on which treatment is best for your hair needs.",
       },
     ]}
-  />
+  >
+    <Fragment slot="action">
+      <div class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+        <Button
+          variant="primary"
+          text="Schedule an Appointment"
+          href="https://www.kathymach.com/appointments"
+          target="_blank"
+          type="button"
+        />
+      </div>
+    </Fragment>
+  </FAQs>
 
   <!-- Stats Widget ****************** -->
 

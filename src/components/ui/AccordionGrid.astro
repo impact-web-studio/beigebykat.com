@@ -11,6 +11,7 @@ export interface Props {
   classes?: {
     container?: string;
     panel?: string;
+    w;
     title?: string;
     description?: string;
     icon?: string;
@@ -65,7 +66,11 @@ const {
               </h3>
               <Icon
                 name={icon || defaultIcon}
-                class={twMerge('w-7 h-7 accordion-icon', defaultIconClass, itemClasses?.icon)}
+                class={twMerge(
+                  'w-7 h-7 accordion-icon transition-all 300ms ease-in-out',
+                  defaultIconClass,
+                  itemClasses?.icon
+                )}
               />
             </button>
 
@@ -112,11 +117,11 @@ const {
 
         if (!expanded) {
           content.style.maxHeight = `${content.scrollHeight}px`;
-          icon.classList.add('rotate-180', 'text-primary');
+          icon.classList.add('-rotate-180', 'text-primary');
           titleText.classList.add('text-primary');
         } else {
           content.style.maxHeight = '0px';
-          icon.classList.remove('rotate-180', 'text-primary');
+          icon.classList.remove('-rotate-180', 'text-primary');
           titleText.classList.remove('text-primary');
         }
       });

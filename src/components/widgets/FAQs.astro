@@ -3,6 +3,7 @@ import Headline from '~/components/ui/Headline.astro';
 import AccordionGrid from '~/components/ui/AccordionGrid.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { Faqs as Props } from '~/types';
+import Button from '~/components/ui/Button.astro';
 
 const {
   title = '',
@@ -29,14 +30,22 @@ const {
     subtitle={subtitle}
     tagline={tagline}
   />
-  <AccordionGrid
-    items={items}
-    columns={columns}
-    defaultIcon="tabler:chevron-right"
-    classes={{
-      container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
-      panel: 'max-w-none',
-      icon: 'flex-shrink-0 mt-1 w-6 h-6',
-    }}
-  />
+  <div class="flex flex-col gap-y-16">
+    <AccordionGrid
+      items={items}
+      columns={columns}
+      defaultIcon="tabler:chevron-down"
+      classes={{
+        container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
+        panel: 'max-w-none',
+        icon: 'flex-shrink-0 mt-1 w-6 h-6',
+        title: 'font-bold text-base capitalize',
+        description: 'text-sm text-muted',
+      }}
+    />
+
+    <div class="flex items-center justify-center">
+      <slot name="action" />
+    </div>
+  </div>
 </WidgetWrapper>
