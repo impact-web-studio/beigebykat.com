@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import Button from './Button.astro';
 import { Image } from 'astro:assets';
 
-const { items = [], columns, classes = {} } = Astro.props;
+const { items = [], columns, classes = {} } = Astro.props as Props;
 
 const {
   container: containerClass = '',
