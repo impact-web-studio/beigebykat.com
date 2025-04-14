@@ -11,7 +11,7 @@ export interface Props {
   classes?: {
     container?: string;
     panel?: string;
-    w;
+    w?: string;
     title?: string;
     description?: string;
     icon?: string;
@@ -19,7 +19,7 @@ export interface Props {
   };
 }
 
-const { items = [], columns = 1, defaultIcon = 'tabler:chevron-down', classes = {} } = Astro.props;
+const { items = [], columns = 1, defaultIcon = 'tabler:chevron-down', classes = {} } = Astro.props as Props;
 
 const {
   container: containerClass = '',
@@ -102,8 +102,7 @@ const {
 }
 
 <script>
-  // This is an Astro script tag which executes client-side
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
     const accordionToggles = document.querySelectorAll('.accordion-toggle');
 
     accordionToggles.forEach((toggle) => {
