@@ -49,12 +49,16 @@ export const footerData = {
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    // { text: 'Terms', href: getPermalink('/terms') },
+    // { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+    {
+      ariaLabel: 'Instagram',
+      icon: 'tabler:brand-instagram',
+      href: 'https://www.instagram.com/beigebykat',
+      target: '_blank',
+    },
   ],
   footNote: `
   Designed & Developed by <a class="text-primary hover:underline hover:text-black transition-colors duration-300 ease-in-out" href="https://impactwebstudio.ca/"> Impact Web Studio</a> · All rights reserved.

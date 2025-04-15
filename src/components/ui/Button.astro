@@ -38,7 +38,7 @@ const variants = {
     </button>
   ) : (
     <a
-      class={className}
+      class={twMerge(variants[variant] || '', className)}
       {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
       {...rest}
     >
