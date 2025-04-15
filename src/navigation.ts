@@ -1,4 +1,4 @@
-import { getPermalink, getHomePermalink, getAsset } from './utils/permalinks';
+import { getHomePermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -28,7 +28,7 @@ export const headerData = {
     { text: 'Contact', href: '/contact' },
     {
       text: 'Book Appointment',
-      href: 'https://github.com/onwidget/astrowind',
+      href: 'https://book.squareup.com/appointments/96phegsblrl7e1/location/LKF7J0AARRWD3?buttonTextColor=000000&color=f5f0ef&locale=en&referrer=so',
       target: '_blank',
       icon: 'material-symbols-light:arrow-outward-rounded',
     },

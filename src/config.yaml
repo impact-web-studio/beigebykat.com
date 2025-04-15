@@ -1,6 +1,6 @@
 site:
-  name: Kathy Mach | Toronto Hair Stylist
-  site: 'https://astrowind.vercel.app'
+  name: Beige By Kat | Kathy Mach | Toronto Hair Stylist
+  site: 'https://beigebykat.com'
   base: '/'
   trailingSlash: false
 
@@ -9,23 +9,12 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Kathy Mach | Toronto (GTA) Hair Stylist
-    template: '%s — AstroWind'
-  description: "Toronto-based hair stylist specializing in balayages."
+    default: BeigeByKat | Kathy Mach | Toronto (GTA) Hair Stylist
+    template: 'BeigeByKat | %s'
+  description: 'Toronto-based hair stylist specializing in balayages.'
   robots:
     index: true
     follow: true
-  openGraph:
-    site_name: Kathy Mach | Toronto (GTA) Hair Stylist
-    images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
-    type: website
-  twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
-    cardType: summary_large_image
 
 i18n:
   language: en
