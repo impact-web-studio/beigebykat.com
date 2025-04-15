@@ -12,16 +12,19 @@ export const headerData = {
       text: 'About',
       href: getHomePermalink() + '#about',
       sectionId: 'about',
+      previousSectionId: 'home',
     },
     {
       text: 'Services',
       href: getHomePermalink() + '#services',
       sectionId: 'services',
+      previousSectionId: 'about',
     },
     {
       text: 'FAQs',
       href: getHomePermalink() + '#faqs',
       sectionId: 'faqs',
+      previousSectionId: 'services',
     },
   ],
   actions: [
