@@ -164,23 +164,25 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </header>
 
 <script>
-  // TODO: fix transition bug and URL
-
   import { getHomePermalink } from '~/utils/permalinks';
 
   // Improved navigation functionality to handle view transitions
   function setupNavigationHighlighting() {
+    console.log('1. setupNavigationHighlighting Function called');
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('header a');
     const currentPath = window.location.pathname;
     console.log('setup triggered, current page', currentPath);
     const isHomePage = currentPath === '/' || currentPath === '';
+    console.log('2. Home Page Fu Check', isHomePage);
 
     // Active class to use when a section is in viewport
     const ACTIVE_CLASS = 'text-primary transition-colors duration-300 ease-in-out';
 
     // Reset all links first
     function resetAllLinks() {
+      console.log('3. ResetallLinks');
+
       navLinks.forEach((link) => {
         link.classList.remove(...ACTIVE_CLASS.split(' '));
       });
@@ -207,15 +209,24 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         }
       });
     }
+    console.log('rando check. Home Page Check', isHomePage);
 
     // Special handling for top of page - activate home link when at the top
+    // Replace the handleScrollTop function with this version
     function handleScrollTop() {
-      if (isHomePage && window.scrollY < 50) {
+      // Check if we're currently on the home page by examining the current path
+      const currentPagePath = window.location.pathname;
+      const isCurrentlyHomePage = currentPagePath === '/' || currentPagePath === '';
+
+      if (isCurrentlyHomePage && window.scrollY < 50) {
+        console.log('4. handleScrollTop Called - is home page:', isCurrentlyHomePage);
+
         resetAllLinks();
 
         // Add active class to home link
         const homeLink = document.querySelector('#main-navigation a[data-is-home="true"]');
         if (homeLink) {
+          console.log('5. add active class to home link', isCurrentlyHomePage, homeLink);
           homeLink.classList.add(...ACTIVE_CLASS.split(' '));
         }
       }
@@ -261,6 +272,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         link.addEventListener('click', (e) => {
           const isHome = link.getAttribute('data-is-home') === 'true';
           const sectionId = link.getAttribute('data-section-id');
+          console.log('handle click even for smooth scrolling: is home', isHome, 'sectionID', sectionId);
 
           // Special handling for home link
           if (isHome) {
