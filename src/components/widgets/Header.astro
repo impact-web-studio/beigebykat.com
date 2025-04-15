@@ -164,8 +164,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </header>
 
 <script>
-  import { getHomePermalink } from '~/utils/permalinks';
-
   // Improved navigation functionality to handle view transitions
   function setupNavigationHighlighting() {
     console.log('1. setupNavigationHighlighting Function called');
@@ -265,36 +263,53 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         observer.observe(section);
       });
     }
-
-    // Handle click events for smooth scrolling
+    // Replace the setupClickHandlers function
     function setupClickHandlers() {
       navLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
           const isHome = link.getAttribute('data-is-home') === 'true';
           const sectionId = link.getAttribute('data-section-id');
-          console.log('handle click even for smooth scrolling: is home', isHome, 'sectionID', sectionId);
+          const currentPagePath = window.location.pathname;
+          const isCurrentlyHomePage = currentPagePath === '/' || currentPagePath === '';
 
-          // Special handling for home link
-          if (isHome) {
-            if (isHomePage) {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            // Don't prevent default for home link when on other pages
-            return;
-          }
-
-          // Regular section links - only handle scroll on home page
-          if (sectionId && sectionId !== '' && isHomePage) {
+          // Only handle section scrolling when on home page
+          if (isCurrentlyHomePage && sectionId && sectionId !== '') {
             e.preventDefault();
             const section = document.getElementById(sectionId);
             if (section) {
               section.scrollIntoView({ behavior: 'smooth' });
             }
           }
+          // Handle home link on home page
+          else if (isHome && isCurrentlyHomePage) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         });
       });
     }
+
+    // Add this to your Astro component's script section, outside any function
+    // This handles the transition from another page to a section
+    document.addEventListener('astro:after-swap', () => {
+      // Check if we need to scroll to a section after page transition
+      const urlHash = window.location.hash;
+      if (urlHash) {
+        // Clean URL without changing scroll position yet
+        const scrollPos = window.scrollY;
+        history.replaceState(null, document.title, window.location.pathname);
+        window.scrollTo(0, scrollPos);
+
+        // Now scroll to the section
+        const sectionId = urlHash.substring(1);
+        const section = document.getElementById(sectionId);
+        if (section) {
+          setTimeout(() => {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }, 10);
+        }
+      }
+    });
 
     // Initial setup
     highlightCurrentPageLink();

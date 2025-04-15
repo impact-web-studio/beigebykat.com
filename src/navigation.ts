@@ -57,6 +57,6 @@ export const footerData = {
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
   ],
   footNote: `
-  Designed & Developed by <a class="text-primary hover:underline hover:text-black transition-all duration-300 ease-in-out" href="https://impactwebstudio.ca/"> Impact Web Studio</a> · All rights reserved.
+  Designed & Developed by <a class="text-primary hover:underline hover:text-black transition-colors duration-300 ease-in-out" href="https://impactwebstudio.ca/"> Impact Web Studio</a> · All rights reserved.
 `,
 };
