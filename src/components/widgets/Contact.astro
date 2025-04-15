@@ -140,63 +140,53 @@ const consultationFormSteps = [
 const disclaimerText = {
   label: 'I agree to the privacy policy and consent to being contacted regarding my project inquiry.',
 };
-
-const { title = '', subtitle = '', tagline = '' } = Astro.props;
 ---
 
-<WidgetWrapper containerClass="max-w-3xl">
-  <Headline
-    title={title}
-    subtitle={subtitle}
-    tagline={tagline}
-    classes={{ title: 'font-serif uppercase', subtitle: '' }}
-  />
-  <div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 md:p-8">
-    <!-- Form Type Selection -->
-    <div class="form-type-tabs flex border-b border-gray-200 dark:border-gray-700 mb-8">
-      <button
-        id="general-tab"
-        class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400"
-        aria-selected="true"
-      >
-        Contact Form
-      </button>
-      <button
-        id="consultation-tab"
-        class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-        aria-selected="false"
-      >
-        New Client Form
-      </button>
-    </div>
-
-    <!-- Form Containers -->
-    <div
-      id="general-form-container"
-      class="form-container block"
+<div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 md:p-8">
+  <!-- Form Type Selection -->
+  <div class="form-type-tabs flex border-b border-gray-200 dark:border-gray-700 mb-8">
+    <button
+      id="general-tab"
+      class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400"
+      aria-selected="true"
     >
-      <div class="max-w-2xl mx-auto">
-        <FormContainer
-          inputs={contactFormInputs}
-          textarea={contactFormTextarea}
-          disclaimer={disclaimerText}
-          button="Send Message"
-        />
-      </div>
-    </div>
-
-    <div
-      id="consultation-form-container"
-      class="form-container hidden"
+      Contact Form
+    </button>
+    <button
+      id="consultation-tab"
+      class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+      aria-selected="false"
     >
-      <ConsultationForm
-        steps={consultationFormSteps}
+      New Client Form
+    </button>
+  </div>
+
+  <!-- Form Containers -->
+  <div
+    id="general-form-container"
+    class="form-container block"
+  >
+    <div class="max-w-2xl mx-auto">
+      <FormContainer
+        inputs={contactFormInputs}
+        textarea={contactFormTextarea}
         disclaimer={disclaimerText}
-        button="Submit Form"
+        button="Send Message"
       />
     </div>
   </div>
-</WidgetWrapper>
+
+  <div
+    id="consultation-form-container"
+    class="form-container hidden"
+  >
+    <ConsultationForm
+      steps={consultationFormSteps}
+      disclaimer={disclaimerText}
+      button="Submit Form"
+    />
+  </div>
+</div>
 
 <script>
   document.addEventListener('astro:page-load', () => {
