@@ -26,11 +26,17 @@ const metadata = {
       class=`w-full h-fit max-w-wrapper-max mx-auto flex flex-col max-w-contain-max lg:max-w-content-max items-center gap-10 lg:items-start lg:flex-row lg:gap-10 lg:justify-between contain`
     >
       <div class="wrapper w-full lg:max-w-1/2 flex flex-col gap-10 lg:gap-16">
-        <div class="hidden rounded-xl w-full h-fit relative lg:flex flex-col items-center justify-end">
+        <div
+          class="hidden rounded-xl w-full h-fit relative lg:flex flex-col items-center justify-end"
+          style="view-transition-name: map-section;"
+        >
           <div class="rounded-xl w-full h-fit overflow-hidden shadow-sm">
             <GoogleMaps />
           </div>
-          <div class="absolute translate-y-1/2 mx-auto z-10 w-[80%] h-fit bg-white rounded-xl shadow-md p-5 gap-5">
+          <div
+            class="absolute translate-y-1/2 mx-auto z-10 w-[80%] h-fit bg-white rounded-xl shadow-md p-5 gap-5"
+            style="view-transition-name: map-info;"
+          >
             <p class="text-primary font-serif text-lg font-semibold">Address</p>
             <p class="text-muted font-sm">651 Dupont St Toronto, Ontario M6G 1Z4</p>
           </div>

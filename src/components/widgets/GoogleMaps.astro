@@ -2,13 +2,62 @@
 const { width = '600', height = '450' } = Astro.props;
 ---
 
-<iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2885.8750144049645!2d-79.42368832305323!3d43.67156915124149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3488a1e6be51%3A0x6adae750771e61ae!2sLisa%20Dinh%20Hair%20Studio!5e0!3m2!1sen!2sca!4v1744613878105!5m2!1sen!2sca"
-  width={width}
-  height={height}
-  style="border:0;"
-  allowfullscreen=""
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade"
-  class="w-full"
-></iframe>
+<div
+  class="maps-container w-full"
+  data-maps-loaded="false"
+>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2885.8750144049645!2d-79.42368832305323!3d43.67156915124149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3488a1e6be51%3A0x6adae750771e61ae!2sLisa%20Dinh%20Hair%20Studio!5e0!3m2!1sen!2sca!4v1744613878105!5m2!1sen!2sca"
+    width={width}
+    height={height}
+    style="border:0;"
+    allowfullscreen=""
+    loading="eager"
+    referrerpolicy="no-referrer-when-downgrade"
+    class="w-full transition-opacity duration-500 opacity-0"
+    onload="this.classList.add('opacity-100'); this.parentElement.dataset.mapsLoaded = 'true';"
+  ></iframe>
+</div>
+
+<script>
+  // Add this script to handle preloading when the user might navigate to contact page
+  document.addEventListener('astro:page-load', () => {
+    // Preload maps on all pages - for a potentially faster navigation experience
+    const contactLinks = document.querySelectorAll('a[href*="contact"]');
+    if (contactLinks.length > 0) {
+      contactLinks.forEach((link) => {
+        link.addEventListener('mouseenter', () => {
+          // Create a preconnect link when user hovers over a contact link
+          if (!document.querySelector('link[rel="preconnect"][href="https://www.google.com"]')) {
+            const preconnect = document.createElement('link');
+            preconnect.rel = 'preconnect';
+            preconnect.href = 'https://www.google.com';
+            document.head.appendChild(preconnect);
+          }
+        });
+      });
+    }
+
+    // Handle maps container visibility on the contact page
+    const mapsContainer = document.querySelector('.maps-container');
+    if (mapsContainer) {
+      // Use Intersection Observer to load the map only when it comes into view
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const iframe = entry.target.querySelector('iframe');
+              if (iframe) {
+                iframe.classList.add('opacity-100');
+              }
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(mapsContainer);
+    }
+  });
+</script>

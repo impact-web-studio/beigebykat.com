@@ -161,176 +161,175 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
   </div>
-</header>
 
-<script>
-  // Improved navigation functionality to handle view transitions
-  function setupNavigationHighlighting() {
-    console.log('1. setupNavigationHighlighting Function called');
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('header a');
-    const currentPath = window.location.pathname;
-    console.log('setup triggered, current page', currentPath);
-    const isHomePage = currentPath === '/' || currentPath === '';
-    console.log('2. Home Page Fu Check', isHomePage);
+  <script>
+    // Improved navigation functionality to handle view transitions
+    function setupNavigationHighlighting() {
+      console.log('1. setupNavigationHighlighting Function called');
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('header a');
+      const currentPath = window.location.pathname;
+      console.log('setup triggered, current page', currentPath);
+      const isHomePage = currentPath === '/' || currentPath === '';
+      console.log('2. Home Page Fu Check', isHomePage);
 
-    // Active class to use when a section is in viewport
-    const ACTIVE_CLASS = 'text-primary transition-colors duration-300 ease-in-out';
+      // Active class to use when a section is in viewport
+      const ACTIVE_CLASS = 'text-primary transition-colors duration-300 ease-in-out';
 
-    // Reset all links first
-    function resetAllLinks() {
-      console.log('3. ResetallLinks');
+      // Reset all links first
+      function resetAllLinks() {
+        console.log('3. ResetallLinks');
 
-      navLinks.forEach((link) => {
-        link.classList.remove(...ACTIVE_CLASS.split(' '));
-      });
-    }
+        navLinks.forEach((link) => {
+          link.classList.remove(...ACTIVE_CLASS.split(' '));
+        });
+      }
 
-    // Highlight the appropriate link based on current URL path
-    function highlightCurrentPageLink() {
-      resetAllLinks();
-
-      navLinks.forEach((link) => {
-        const linkPath = link.getAttribute('href');
-        const linkFullHref = link.getAttribute('data-full-href');
-        const linkIsHome = link.getAttribute('data-is-home') === 'true';
-
-        // Check if this link matches the current path
-        if (
-          (!isHomePage && linkPath === currentPath) ||
-          (!isHomePage && linkPath === `/${trimSlash(currentPath)}`) ||
-          (!isHomePage && `/${trimSlash(linkPath)}` === currentPath) ||
-          (!isHomePage && linkFullHref === currentPath) ||
-          (isHomePage && linkIsHome && window.scrollY < 50)
-        ) {
-          link.classList.add(...ACTIVE_CLASS.split(' '));
-        }
-      });
-    }
-    console.log('rando check. Home Page Check', isHomePage);
-
-    // Special handling for top of page - activate home link when at the top
-    // Replace the handleScrollTop function with this version
-    function handleScrollTop() {
-      // Check if we're currently on the home page by examining the current path
-      const currentPagePath = window.location.pathname;
-      const isCurrentlyHomePage = currentPagePath === '/' || currentPagePath === '';
-
-      if (isCurrentlyHomePage && window.scrollY < 50) {
-        console.log('4. handleScrollTop Called - is home page:', isCurrentlyHomePage);
-
+      // Highlight the appropriate link based on current URL path
+      function highlightCurrentPageLink() {
         resetAllLinks();
 
-        // Add active class to home link
-        const homeLink = document.querySelector('#main-navigation a[data-is-home="true"]');
-        if (homeLink) {
-          console.log('5. add active class to home link', isCurrentlyHomePage, homeLink);
-          homeLink.classList.add(...ACTIVE_CLASS.split(' '));
-        }
-      }
-    }
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute('href');
+          const linkFullHref = link.getAttribute('data-full-href');
+          const linkIsHome = link.getAttribute('data-is-home') === 'true';
 
-    // Set up intersection observer for section highlighting on home page
-    function setupSectionObserver() {
-      if (!isHomePage) return;
-
-      const observerOptions = {
-        rootMargin: '-100px 0px -70% 0px',
-        threshold: 0,
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-
-            // Don't process if we're at the top of the page
-            if (window.scrollY < 50) return;
-
-            resetAllLinks();
-
-            // Add active class to corresponding nav link
-            const correspondingLink = document.querySelector(`#main-navigation a[data-section-id="${id}"]`);
-            if (correspondingLink) {
-              correspondingLink.classList.add(...ACTIVE_CLASS.split(' '));
-            }
+          // Check if this link matches the current path
+          if (
+            (!isHomePage && linkPath === currentPath) ||
+            (!isHomePage && linkPath === `/${trimSlash(currentPath)}`) ||
+            (!isHomePage && `/${trimSlash(linkPath)}` === currentPath) ||
+            (!isHomePage && linkFullHref === currentPath) ||
+            (isHomePage && linkIsHome && window.scrollY < 50)
+          ) {
+            link.classList.add(...ACTIVE_CLASS.split(' '));
           }
         });
-      }, observerOptions);
+      }
+      console.log('rando check. Home Page Check', isHomePage);
 
-      // Observe all sections
-      sections.forEach((section) => {
-        observer.observe(section);
-      });
-    }
-    // Replace the setupClickHandlers function
-    function setupClickHandlers() {
-      navLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-          const isHome = link.getAttribute('data-is-home') === 'true';
-          const sectionId = link.getAttribute('data-section-id');
-          const currentPagePath = window.location.pathname;
-          const isCurrentlyHomePage = currentPagePath === '/' || currentPagePath === '';
+      // Special handling for top of page - activate home link when at the top
+      // Replace the handleScrollTop function with this version
+      function handleScrollTop() {
+        // Check if we're currently on the home page by examining the current path
+        const currentPagePath = window.location.pathname;
+        const isCurrentlyHomePage = currentPagePath === '/' || currentPagePath === '';
 
-          // Only handle section scrolling when on home page
-          if (isCurrentlyHomePage && sectionId && sectionId !== '') {
-            e.preventDefault();
-            const section = document.getElementById(sectionId);
-            if (section) {
+        if (isCurrentlyHomePage && window.scrollY < 50) {
+          console.log('4. handleScrollTop Called - is home page:', isCurrentlyHomePage);
+
+          resetAllLinks();
+
+          // Add active class to home link
+          const homeLink = document.querySelector('#main-navigation a[data-is-home="true"]');
+          if (homeLink) {
+            console.log('5. add active class to home link', isCurrentlyHomePage, homeLink);
+            homeLink.classList.add(...ACTIVE_CLASS.split(' '));
+          }
+        }
+      }
+
+      // Set up intersection observer for section highlighting on home page
+      function setupSectionObserver() {
+        if (!isHomePage) return;
+
+        const observerOptions = {
+          rootMargin: '-100px 0px -70% 0px',
+          threshold: 0,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+
+              // Don't process if we're at the top of the page
+              if (window.scrollY < 50) return;
+
+              resetAllLinks();
+
+              // Add active class to corresponding nav link
+              const correspondingLink = document.querySelector(`#main-navigation a[data-section-id="${id}"]`);
+              if (correspondingLink) {
+                correspondingLink.classList.add(...ACTIVE_CLASS.split(' '));
+              }
+            }
+          });
+        }, observerOptions);
+
+        // Observe all sections
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+      }
+      // Replace the setupClickHandlers function
+      function setupClickHandlers() {
+        navLinks.forEach((link) => {
+          link.addEventListener('click', (e) => {
+            const isHome = link.getAttribute('data-is-home') === 'true';
+            const sectionId = link.getAttribute('data-section-id');
+            const currentPagePath = window.location.pathname;
+            const isCurrentlyHomePage = currentPagePath === '/' || currentPagePath === '';
+
+            // Only handle section scrolling when on home page
+            if (isCurrentlyHomePage && sectionId && sectionId !== '') {
+              e.preventDefault();
+              const section = document.getElementById(sectionId);
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+            // Handle home link on home page
+            else if (isHome && isCurrentlyHomePage) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          });
+        });
+      }
+
+      // Add this to your Astro component's script section, outside any function
+      // This handles the transition from another page to a section
+      document.addEventListener('astro:after-swap', () => {
+        // Check if we need to scroll to a section after page transition
+        const urlHash = window.location.hash;
+        if (urlHash) {
+          // Clean URL without changing scroll position yet
+          const scrollPos = window.scrollY;
+          history.replaceState(null, document.title, window.location.pathname);
+          window.scrollTo(0, scrollPos);
+
+          // Now scroll to the section
+          const sectionId = urlHash.substring(1);
+          const section = document.getElementById(sectionId);
+          if (section) {
+            setTimeout(() => {
               section.scrollIntoView({ behavior: 'smooth' });
-            }
+            }, 10);
           }
-          // Handle home link on home page
-          else if (isHome && isCurrentlyHomePage) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        });
-      });
-    }
-
-    // Add this to your Astro component's script section, outside any function
-    // This handles the transition from another page to a section
-    document.addEventListener('astro:after-swap', () => {
-      // Check if we need to scroll to a section after page transition
-      const urlHash = window.location.hash;
-      if (urlHash) {
-        // Clean URL without changing scroll position yet
-        const scrollPos = window.scrollY;
-        history.replaceState(null, document.title, window.location.pathname);
-        window.scrollTo(0, scrollPos);
-
-        // Now scroll to the section
-        const sectionId = urlHash.substring(1);
-        const section = document.getElementById(sectionId);
-        if (section) {
-          setTimeout(() => {
-            section.scrollIntoView({ behavior: 'smooth' });
-          }, 10);
         }
+      });
+
+      // Initial setup
+      highlightCurrentPageLink();
+      setupSectionObserver();
+      setupClickHandlers();
+
+      // Add scroll listener only for home page
+      if (isHomePage) {
+        window.addEventListener('scroll', handleScrollTop);
       }
-    });
-
-    // Initial setup
-    highlightCurrentPageLink();
-    setupSectionObserver();
-    setupClickHandlers();
-
-    // Add scroll listener only for home page
-    if (isHomePage) {
-      window.addEventListener('scroll', handleScrollTop);
     }
-  }
 
-  // Setup on initial page load
-  document.addEventListener('astro:page-load', setupNavigationHighlighting);
+    // Setup on initial page load
+    document.addEventListener('astro:page-load', setupNavigationHighlighting);
 
-  // Setup on view transitions
-  // document.addEventListener('astro:after-preparation', setupNavigationHighlighting);
+    // Setup on view transitions
+    // document.addEventListener('astro:after-preparation', setupNavigationHighlighting);
 
-  // Helper function to trim slashes like in the server-side version
-  function trimSlash(s) {
-    return s.replace(/^\/+|\/+$/g, '');
-  }
-</script>
->
+    // Helper function to trim slashes like in the server-side version
+    function trimSlash(s) {
+      return s.replace(/^\/+|\/+$/g, '');
+    }
+  </script>
+</header>
