@@ -244,6 +244,12 @@ export interface Form {
   disclaimer?: Disclaimer;
   button?: string;
   description?: string;
+  steps?: Array<FormSteps>;
+}
+
+export interface FormStep {
+  title: string;
+  inputs: [];
 }
 
 // WIDGETS
