@@ -83,7 +83,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-3 py-3 flex items-center whitespace-nowrap uppercase font-serif"
+                    class="hover:text-primary px-3 py-3 flex items-center whitespace-nowrap uppercase font-serif"
                   >
                     {text}{' '}
                     <Icon
@@ -91,12 +91,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                       class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden lg:inline"
                     />
                   </button>
-                  <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-dark rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
+                  <ul class="dropdown-menu lg:backdrop-blur-md rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
                     {links.map(({ text: text2, href: href2, sectionId: sectionId2, isHome: isHome2 }) => (
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b lg:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap uppercase !font-serif',
+                            'first:rounded-t last:rounded-b lg:hover:bg-gray-100 hover:text-primary py-2 px-5 block whitespace-no-wrap uppercase !font-serif',
                             { 'text-primary': href2 === currentPath },
                           ]}
                           href={href2}
@@ -113,7 +113,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'nav-link hover:text-link dark:hover:text-white px-2 py-3 xl:px-4 flex items-center whitespace-nowrap uppercase font-normal font-serif',
+                    'nav-link hover:text-primary px-2 py-3 xl:px-4 flex items-center whitespace-nowrap uppercase font-normal font-serif',
                     { 'text-primary': href === currentPath },
                   ]}
                   href={href}
