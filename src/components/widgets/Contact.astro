@@ -140,19 +140,19 @@ const disclaimerText = {
 };
 ---
 
-<div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 md:p-8">
+<div class="bg-whiterounded-lg shadow-md p-6 md:p-8">
   <!-- Form Type Selection -->
-  <div class="form-type-tabs flex border-b border-gray-200 dark:border-gray-700 mb-8">
+  <div class="form-type-tabs flex border-b border-gray-200 mb-8">
     <button
       id="general-tab"
-      class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400"
+      class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-primary-600 text-primary-600"
       aria-selected="true"
     >
       Contact Form
     </button>
     <button
       id="consultation-tab"
-      class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+      class="tab-button py-3 px-6 font-medium text-sm border-b-2 border-transparent text-gray-500"
       aria-selected="false"
     >
       New Client Form
@@ -198,22 +198,12 @@ const disclaimerText = {
     // Switch to general form
     generalTab.addEventListener('click', () => {
       // Update tab states
-      generalTab.classList.add(
-        'border-primary-600',
-        'text-primary-600',
-        'dark:text-primary-400',
-        'dark:border-primary-400'
-      );
-      generalTab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+      generalTab.classList.add('border-primary-600', 'text-primary-600');
+      generalTab.classList.remove('border-transparent', 'text-gray-500');
       generalTab.setAttribute('aria-selected', 'true');
 
-      consultationTab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
-      consultationTab.classList.remove(
-        'border-primary-600',
-        'text-primary-600',
-        'dark:text-primary-400',
-        'dark:border-primary-400'
-      );
+      consultationTab.classList.add('border-transparent', 'text-gray-500');
+      consultationTab.classList.remove('border-primary-600', 'text-primary-600');
       consultationTab.setAttribute('aria-selected', 'false');
 
       // Show/hide forms
@@ -226,22 +216,12 @@ const disclaimerText = {
     // Switch to consultation form
     consultationTab.addEventListener('click', () => {
       // Update tab states
-      consultationTab.classList.add(
-        'border-primary-600',
-        'text-primary-600',
-        'dark:text-primary-400',
-        'dark:border-primary-400'
-      );
-      consultationTab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+      consultationTab.classList.add('border-primary-600', 'text-primary-600');
+      consultationTab.classList.remove('border-transparent', 'text-gray-500');
       consultationTab.setAttribute('aria-selected', 'true');
 
-      generalTab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
-      generalTab.classList.remove(
-        'border-primary-600',
-        'text-primary-600',
-        'dark:text-primary-400',
-        'dark:border-primary-400'
-      );
+      generalTab.classList.add('border-transparent', 'text-gray-500');
+      generalTab.classList.remove('border-primary-600', 'text-primary-600');
       generalTab.setAttribute('aria-selected', 'false');
 
       // Show/hide forms
