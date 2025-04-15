@@ -134,10 +134,6 @@ const consultationFormSteps = [
     },
   },
 ];
-
-const disclaimerText = {
-  label: 'I agree to the privacy policy and consent to being contacted regarding my project inquiry.',
-};
 ---
 
 <div class="bg-whiterounded-lg shadow-md p-6 md:p-8">
@@ -168,7 +164,6 @@ const disclaimerText = {
       <FormContainer
         inputs={contactFormInputs}
         textarea={contactFormTextarea}
-        disclaimer={disclaimerText}
         button="Send Message"
       />
     </div>
@@ -180,7 +175,6 @@ const disclaimerText = {
   >
     <ConsultationForm
       steps={consultationFormSteps}
-      disclaimer={disclaimerText}
       button="Submit Form"
     />
   </div>

@@ -12,7 +12,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
   {
     inputs &&
       inputs.map(
-        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '' }) =>
+        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '', required = true }) =>
           name && (
             <div class="mb-6">
               {label && (
@@ -20,7 +20,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
                   for={name}
                   class="block text-sm font-medium"
                 >
-                  {label}
+                  {label} {required && <span class="text-red-600">*</span>}
                 </label>
               )}
               <input

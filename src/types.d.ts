@@ -195,6 +195,7 @@ export interface Input {
   label?: string;
   autocomplete?: string;
   placeholder?: string;
+  required?: true;
 }
 
 export interface Textarea {
