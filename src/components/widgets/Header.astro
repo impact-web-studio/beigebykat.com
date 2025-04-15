@@ -70,12 +70,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     ]}
   >
     <nav
-      class="items-center w-full lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-y-visible lg:overflow-x-auto lg:justify-self-center"
+      class="items-center w-full max-sm:!px-3 max-sm:!py-2 lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-y-visible lg:overflow-x-auto lg:justify-self-center"
       aria-label="Main navigation"
       id="main-navigation"
     >
       <ul
-        class="flex flex-col lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center"
+        class="flex flex-col mt-3 lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center"
       >
         {
           links.map(({ text, href, links, sectionId, isHome }) => (
@@ -333,3 +333,4 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     return s.replace(/^\/+|\/+$/g, '');
   }
 </script>
+>
