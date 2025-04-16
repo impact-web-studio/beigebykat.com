@@ -257,7 +257,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           observer.observe(section);
         });
       }
-      // Replace the setupClickHandlers function
       function setupClickHandlers() {
         navLinks.forEach((link) => {
           link.addEventListener('click', (e) => {
@@ -267,13 +266,35 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             const currentPagePath = window.location.pathname;
             const isCurrentlyHomePage = currentPagePath === '/' || currentPagePath === '';
 
-            console.log(previousSectionId);
             // Only handle section scrolling when on home page
             if (isCurrentlyHomePage && previousSectionId && previousSectionId !== '') {
               e.preventDefault();
               const previousSection = document.getElementById(previousSectionId);
+
               if (previousSection) {
-                previousSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                // Check if we're on mobile or desktop
+                const isMobile = window.innerWidth < 1024; // Using lg breakpoint from Tailwind
+
+                if (isMobile) {
+                  // Mobile behavior - scroll to end of previous section
+                  previousSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                } else {
+                  // Desktop behavior - scroll to a position that shows the target section properly
+                  const targetSection = document.getElementById(sectionId);
+                  if (targetSection) {
+                    const headerHeight = document.getElementById('header')?.offsetHeight || 80;
+                    const targetPosition =
+                      targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                      top: targetPosition,
+                      behavior: 'smooth',
+                    });
+                  } else {
+                    // Fallback if target section not found
+                    previousSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }
               }
             }
             // Handle home link on home page
