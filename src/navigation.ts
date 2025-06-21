@@ -30,7 +30,7 @@ export const headerData = {
   actions: [
     { text: 'Contact', href: '/contact' },
     {
-      text: 'Book Appointment',
+      text: 'Book Online',
       href: 'https://book.squareup.com/appointments/96phegsblrl7e1/location/LKF7J0AARRWD3?buttonTextColor=000000&color=f5f0ef&locale=en&referrer=so',
       target: '_blank',
       icon: 'material-symbols-light:arrow-outward-rounded',
