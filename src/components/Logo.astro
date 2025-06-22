@@ -1,20 +1,37 @@
 ---
 import Image from '~/components/common/Image.astro';
 import { getHomePermalink } from '~/utils/permalinks';
-import LogoSrc from '~/assets/images/beigebykat-logo.svg';
+import LogoSrc from '~/assets/images/beigebykat-green.png';
+import FooterSrc from '~/assets/images/beigebykat-white.png';
+
+const { location = '' } = Astro.props;
 ---
 
 <a
   class="inline-block font-bold text-xl h-fit w-fit"
   href={getHomePermalink()}
 >
-  <div class=`h-fit w-[200px] lg:min-w-[260px] xl:min-w-[320px]`>
-    <Image
-      src={LogoSrc}
-      alt="Graphic logo for impact web studio"
-      class="!object-contain"
-      width={300}
-      height={100}
-    />
-  </div>
+  {
+    location === 'footer' ? (
+      <div class="h-fit w-[200px] lg:min-w-[260px] xl:min-w-[320px]">
+        <Image
+          src={FooterSrc}
+          alt="Graphic logo for beigebykat color & creative hair studio"
+          class="!object-contain"
+          width={300}
+          height={100}
+        />
+      </div>
+    ) : (
+      <div class="h-fit w-[160px] lg:min-w-[200px] xl:min-w-[260px] p-2 md:p-3 lg:p-4">
+        <Image
+          src={LogoSrc}
+          alt="Graphic logo for beigebykat color & creative hair studio"
+          class="!object-contain"
+          width={300}
+          height={100}
+        />
+      </div>
+    )
+  }
 </a>
