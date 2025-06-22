@@ -31,7 +31,7 @@ export const headerData = {
     { text: 'Contact', href: '/contact' },
     {
       text: 'Book Online',
-      href: 'https://book.squareup.com/appointments/96phegsblrl7e1/location/LKF7J0AARRWD3?buttonTextColor=000000&color=f5f0ef&locale=en&referrer=so',
+      href: 'https://www.fresha.com/book-now/beanbeauty-mti2rkmw/all-offer?share&pId=386078',
       target: '_blank',
       icon: 'material-symbols-light:arrow-outward-rounded',
     },

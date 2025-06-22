@@ -18,7 +18,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
               {label && (
                 <label
                   for={name}
-                  class="block text-sm font-medium"
+                  class="block text-sm font-medium mb-2"
                 >
                   {label} {required && <span class="text-red-600">*</span>}
                 </label>
@@ -42,7 +42,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
       <div>
         <label
           for="textarea"
-          class="block text-sm font-medium"
+          class="block text-sm font-medium mb-2"
         >
           {textarea.label}
         </label>
