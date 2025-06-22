@@ -1,8 +1,8 @@
 ---
 import Image from '~/components/common/Image.astro';
 import { getHomePermalink } from '~/utils/permalinks';
-import LogoSrc from '~/assets/images/beigebykat-green.png';
-import FooterSrc from '~/assets/images/beigebykat-white.png';
+import LogoSrc from '~/assets/images/beigebykat-logo-black.svg';
+import FooterSrc from '~/assets/images/beigeybykat-logo-white.svg';
 
 const { location = '' } = Astro.props;
 ---
@@ -23,7 +23,7 @@ const { location = '' } = Astro.props;
         />
       </div>
     ) : (
-      <div class="h-fit w-[160px] lg:min-w-[200px] xl:min-w-[260px] p-2 md:p-3 lg:p-4">
+      <div class="h-fit w-[180px] lg:min-w-[220px] xl:min-w-[320px] p-2 md:p-3">
         <Image
           src={LogoSrc}
           alt="Graphic logo for beigebykat color & creative hair studio"
