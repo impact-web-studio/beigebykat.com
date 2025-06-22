@@ -64,6 +64,6 @@ export const footerData = {
     },
   ],
   footNote: `
-  Designed & Developed by <a class="text-primary hover:underline hover:text-black transition-colors duration-300 ease-in-out" href="https://impactwebstudio.ca/"> Impact Web Studio</a> · All rights reserved.
+  Designed & Developed by <a class="text-white/80 underline underline-offset-4 hover:text-accent transition-colors duration-300 ease-in-out" href="https://impactwebstudio.ca/"> Impact Web Studio</a> · All rights reserved.
 `,
 };
